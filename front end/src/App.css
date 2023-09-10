@@ -4,7 +4,7 @@
   padding: 2rem;
   text-align: center; 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: space-around;
 }
@@ -68,8 +68,12 @@ body {
   justify-content: center; /* Centra horizontalmente el contenido */
   align-items: center; /* Centra verticalmente el contenido */
   min-height: 100vh;
-  background-image: url('https://media.istockphoto.com/id/1132090957/es/vector/icono-de-vector-de-mol%C3%A9cula-de-%C3%A1tomo.jpg?s=2048x2048&w=is&k=20&c=5Dx8948RyhFjJeICUvscCE9xncxDFFF4NWoq9pxQ0Ww=');
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIVqDKY9CeEacNZ3SESxeXJMOX46W6UKRxAw&usqp=CAU');
   background-repeat: no-repeat; /* Evita la repetición de la imagen */
   background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
   background-position: center; /* Coloca la imagen en el centro del fondo */
+}
+.container{
+  
+  flex-direction: column;
 }

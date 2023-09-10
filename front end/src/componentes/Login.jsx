@@ -1,23 +1,24 @@
-import React from 'react';
-import { Button, Checkbox, Form, Input } from 'antd';
-import axios from "axios"
+import React from "react";
+import { Button, Checkbox, Form, Input } from "antd";
+import axios from "axios";
 
 const onFinish = (values) => {
-  console.log('Success:', values);
+  console.log("Success:", values);
 };
 
 const onFinishFailed = (errorInfo) => {
-  console.log('Failed:', errorInfo);
+  console.log("Failed:", errorInfo);
 };
 
 const loginRequest = (email, password) => {
-  axios.post('http://localhost:3000/api/users/login', { email, password })
-  .then((response) => {
-    console.log('Respuesta exitosa:', response);
-  })
-  .catch((error) => {
-    console.error('Error en la solicitud:', error);
-  });
+  axios
+    .post("http://localhost:3000/api/users/login", { email, password })
+    .then((response) => {
+      console.log("Respuesta exitosa:", response);
+    })
+    .catch((error) => {
+      console.error("Error en la solicitud:", error);
+    });
 };
 
 const Login = () => (
@@ -40,12 +41,12 @@ const Login = () => (
     autoComplete="off"
   >
     <Form.Item
-      label="Username"
-      name="username"
+      label="email"
+      name="email"
       rules={[
         {
           required: true,
-          message: 'Please input your username!',
+          message: "Please input your username!",
         },
       ]}
     >
@@ -58,7 +59,7 @@ const Login = () => (
       rules={[
         {
           required: true,
-          message: 'Please input your password!',
+          message: "Please input your password!",
         },
       ]}
     >
@@ -82,7 +83,13 @@ const Login = () => (
         span: 16,
       }}
     >
-      <Button type="primary" htmlType="submit" onClick={()=>{loginRequest(Input.Input, Input.Password)}}>
+      <Button
+        type="primary"
+        htmlType="submit"
+        onClick={() => {
+          loginRequest(Input.Input, Input.Password);
+        }}
+      >
         Submit
       </Button>
     </Form.Item>

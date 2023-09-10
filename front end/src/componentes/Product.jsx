@@ -6,22 +6,21 @@ import { peek } from "../utils/peek";
 import { useCartStore } from "../app/useCartStore";
 
 const Product = () => {
+  const [products, setProducts] = useState([]);
+  const [nombreFilter, setNombreFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState(0);
+  const [categoryFilter, setCategoryFilter] = useState("");
+  const [isSortedFilter, setIsSortedFilter] = useState(false);
+  const [count, setCount] = useState(0);
+  const productsGlobal = useCartStore((state) => state.products);
 
-    const [products, setProducts] = useState([]);
-    const [nombreFilter, setNombreFilter] = useState("");
-    const [priceFilter, setPriceFilter] = useState(0);
-    const [categoryFilter, setCategoryFilter] = useState("");
-    const [isSortedFilter, setIsSortedFilter] = useState(false);
-    const [count, setCount] = useState(0);
-    const productsGlobal = useCartStore((state) => state.products);
-    
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
   };
   const onClose = () => {
     setOpen(false);
-  };   
+  };
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())

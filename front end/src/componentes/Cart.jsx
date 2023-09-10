@@ -6,7 +6,7 @@ import { Fragment } from "react";
 const Cart = () => {
   const productsGlobal = useCartStore((state) => state.products);
   return (
-    <>
+    <div className="container">
       <h3 className="buscadpr">
         Total:$
         {productsGlobal
@@ -26,7 +26,7 @@ const Cart = () => {
           </List.Item>
         )}
       />
-    </>
+    </div>
   );
 };
 
