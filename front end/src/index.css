@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.card {
+  border: solid 1px black;
+  width: 13rem;
+  height: 21rem;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card img {
+  height: 40%;
+}
+
+:root {
+  --strongest: #7286d3;
+  --strong: #8ea7e9;
+  --neutral: #e5e0ff;
+  --weak: #fff2f2;
+  --weakest: #ffffff;
+}
+/* :root {
+	--strongest: #487357;
+	--strong: #aabfa4;
+	--neutral: #f2d785;
+	--weak: #f2e9ce;
+	--weakest: #f2e8dc;
+} */
+
+button {
+  cursor: pointer;
+  background-color: var(--strongest);
+  color: var(--neutral);
+  border-radius: 0.5rem;
+  border: 0;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: var(--neutral);
+  color: var(--strongest);
+}
+
+.products-layout {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto auto auto auto;
+}
+
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  width: 13rem;
+}
