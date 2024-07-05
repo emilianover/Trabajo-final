@@ -1,16 +1,16 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../db/database");
 class Ordenes extends Model {}
-Ordenes.init(
+Orders.init(
   {
-    id_user: DataTypes.INTEGER,
-    productos: DataTypes.STRING,
-    
+    userId: DataTypes.INTEGER,
+    id:{type:DataTypes.INTEGER,primaryKey:true, autoIncrement:true},
+    products:{ type: DataTypes.STRING(1000), allowNull: false }
   },
   {
     sequelize,
-    modelName: "ordenes",
-    timestamps: false, // Deshabilita las marcas de tiempo
+    modelName: "orders",
+    timestamps: false,
   }
 );
 module.exports = Ordenes;

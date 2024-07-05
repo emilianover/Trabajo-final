@@ -3,7 +3,7 @@ const { sequelize } = require("../db/database");
 class Users extends Model {}
 Users.init(
   {
-    gmail: DataTypes.STRING,
+    email: DataTypes.STRING,
     password: DataTypes.STRING,
     rol: DataTypes.STRING,
     celular: DataTypes.STRING,

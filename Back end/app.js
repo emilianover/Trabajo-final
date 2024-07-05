@@ -7,7 +7,7 @@ const Products = require("./models/products");
 const indexRouter = require("./routes/index")
 
 
-var usersRouter = require("./routes/users");
+const usersRouter = require("./routes/userRoutes");
 const { sequelize } = require("./db/database");
 
 var app = express();
@@ -42,6 +42,10 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+app.listen(8080, ()=>{
+  console.log("listenin on port 8080")
+})
 
 sequelize
   .sync({ force: false })

@@ -1,10 +1,15 @@
 function userMiddleware (req,res,next){
-    const { body }= req
-    console.log ('me hicieron click')
-    console.log(req)
-    console.log(body)
-    res.status(200).json({ success: true})
+    const { userName, name, lastName, password, tel, adress } = req.body;
 
-}
+  
 
-module.exports = userMiddleware
+
+
+    if (!userName || !name || !lastName || !password || !tel || !adress) {
+    return res.status(400).json({ message: "Please complete all required fields" });
+    } else {
+      next()
+    }
+      }
+    
+      module.exports = userMiddleware
