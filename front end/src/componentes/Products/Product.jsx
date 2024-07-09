@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Card } from "./Card";
-import { Cart } from "./Cart";
+import { Card } from "../Card/Card";
+import { Cart } from "../Cart/Cart";
 import { Button, Drawer } from "antd";
-import { peek } from "../utils/peek";
-import { useCartStore } from "../app/useCartStore";
+import { peek } from "../../utils/peek";
+import { useCartStore } from "../../app/useCartStore";
 
 const Product = () => {
   const [products, setProducts] = useState([]);

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import Login from "./componentes/Login";
-import { Product } from "./componentes/Product";
+import Login from "./componentes/Login/Login";
+import { Product } from "./componentes/Products/Product";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "antd";
-import { useCartStore } from "../app/useCartStore";
+import { useCartStore } from "../../app/useCartStore";
 
 const Card = (props) => {
   const addProduct = useCartStore((state) => state.addProduct);
