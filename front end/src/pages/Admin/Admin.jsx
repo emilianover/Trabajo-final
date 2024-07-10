@@ -1,11 +1,11 @@
 import "../../App.css";
 import { useEffect, useState } from "react";
 
-import EditForm from "../../components/EditForm/EditForm";
-import Welcome from "../../components/Welcome/Welcome";
-import AdminCard from "../../components/AdminCard/AdminCard";
-import Logout from "../../components/Logout/Logout";
-import AddNewProduct from "../../components/AddNewProduct/AddNewProduct";
+import EditForm from "../../componentes/EditForm/EditForm";
+import Welcome from "../../componentes/Welcome/Welcome";
+import AdminCard from "../../componentes/AdminCard/AdminCard";
+import Logout from "../../componentes/Logout/Logout";
+import AddNewProduct from "../../componentes/AddNewProduct/AddNewProduct";
 import peek from "../../utils/peek";
 import { Button, Drawer } from "antd";
 

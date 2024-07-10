@@ -1,4 +1,4 @@
-import { useAdminStore } from "../../stores/useAdminStore";
+import { useAdminStore } from "../../stores/useEditStore";
 import useEditStore from "../../stores/useEditStore";
 
 function AdminCard({ title, imageUrl, description, price, id, product, category }) {

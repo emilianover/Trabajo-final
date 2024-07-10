@@ -1,10 +1,10 @@
 import { Button, Result, List, Avatar } from "antd";
-import Header from "../../components/Header/Header";
+import Header from "../../componentes/Header/Header";
 import { useNavigate } from "react-router-dom";
 import { useCartStore } from "../../stores/useCartStore";
 import './styles.css'
 import { getUser } from "../../functions/cookieHandler";
-import OrderButton from "../../components/OrderButton/OrderButton";
+import OrderButton from "../../componentes/OrderButton/OrderButton";
 const Confirm = () => {
   const userCookies = getUser();
   const globalProducts = useCartStore((state) => state.products);
