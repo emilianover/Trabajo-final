@@ -1,4 +1,4 @@
-import { link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useLoginStore } from "../../stores/useLoginStore";
 import { useLogStore } from "../../stores/useLogStore";
 

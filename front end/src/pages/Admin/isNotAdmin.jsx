@@ -2,7 +2,7 @@
 import Admin from "./Admin";
 import { getUser } from "../../functions/cookieHandler";
 import {Result, Button} from 'antd'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function IsNotAdmin() {
     const navigate = useNavigate();

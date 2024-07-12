@@ -7,10 +7,13 @@ import Success from "./pages/Success/Success";
 import Login from "./componentes/Login/Login";
 import Confirm from "./pages/Confirm/Confirm"
 import peek from "./utils/peek"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
+
+
+const queryClient = new QueryClient()
 function App() {
   return (
     <>

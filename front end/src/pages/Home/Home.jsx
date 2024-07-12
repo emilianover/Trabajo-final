@@ -6,7 +6,7 @@ import Welcome from "../../componentes/Welcome/Welcome";
 import UserDrawer from "../../componentes/UserDrawer/userDrawer";
 import { Card } from "../../componentes/Card/Card";
 import { Cart } from "../../componentes/Cart/Cart";
-import { ShoppingCardOutlined, MenuFoldOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { useLoginStore } from "../../stores/useLoginStore";
 import { useLogStore } from "../../stores/useLogStore";
 import { getUser } from "../../functions/cookieHandler"

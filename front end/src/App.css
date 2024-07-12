@@ -2,11 +2,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center; 
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  text-align: center;
 }
 
 .logo {
@@ -38,42 +34,9 @@
 }
 
 .card {
-  border: solid 1px black;
-  width: 13rem;
-  height: 21rem;
-  border-radius: 1rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin: 2px;
-}
-.productos{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-.ant-image{
-  max-width: 100px;
+  padding: 2em;
 }
 
 .read-the-docs {
   color: #888;
-}
-body {
-  margin: 0; /* Elimina el margen predeterminado del body */
-  padding: 0; /* Elimina el relleno predeterminado del body */
-  display: flex;
-  justify-content: center; /* Centra horizontalmente el contenido */
-  align-items: center; /* Centra verticalmente el contenido */
-  min-height: 100vh;
-  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIVqDKY9CeEacNZ3SESxeXJMOX46W6UKRxAw&usqp=CAU');
-  background-repeat: no-repeat; /* Evita la repetición de la imagen */
-  background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
-  background-position: center; /* Coloca la imagen en el centro del fondo */
-}
-.container{
-  
-  flex-direction: column;
 }

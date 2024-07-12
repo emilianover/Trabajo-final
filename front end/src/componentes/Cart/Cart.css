@@ -1,41 +1,32 @@
-/* Cart.css */
+.cart_list_item_price {
+  color: #4096ff;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+} 
+.cart_list_item_title {
+  font-size: 18px;
+  
+}
 
-/* Estilo para el contenedor principal del carrito */
-.cart-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  /* Estilo para el título del total */
-  .cart-total {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  
-  /* Estilo para cada elemento de la lista de productos */
-  .cart-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  /* Estilo para el título del producto en la lista */
-  .cart-item-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    text-decoration: none;
-  }
-  
-  /* Estilo para el precio del producto en la lista */
-  .cart-item-price {
-    font-size: 16px;
-    color: #777;
-    margin-top: 5px;
-  }
+.avatar {
+width: 50px;
+height: 50px;
+border-radius: 30%;
+}
 
- 
+.drawer_total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #287be0 ;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.drawer_total p {
+  color: #287be0;
+    font-size: 20px;
+}
+
+

@@ -1,99 +1,94 @@
-import React from "react";
-import { Button, Checkbox, Form, Input } from "antd";
+import { useState } from "react";
+// import peek from "../utils/peek";
 import axios from "axios";
+import sleep from "../../utils/sleep";
+import { Button } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
+import { useLoginStore } from "../../stores/useLoginStore";
+import { useAdminStore } from "../../stores/useAdminStore";
+import {createCookies} from "../../functions/cookieHandler";
+import { useNavigate } from "react-router-dom";
 
-const onFinish = (values) => {
-  console.log("Success:", values);
-};
+function Login() {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isInvalidPassword, setIsInvalidPassword] = useState(false);
+  const [isUserNotFound, setIsUserNotFound] = useState(false);
+  const { toggleLoginShow } = useLoginStore();
+  const navigate = useNavigate();
+  const { setIsAdminLogged } = useAdminStore();
+  return (
+    <>
+      <div className="login">
+        <button className="close_button" onClick={() => toggleLoginShow() }>
+          <CloseOutlined />{" "}
+        </button>
+        <label htmlFor="userName">Username <span className="span">{isUserNotFound? '*User not Found' : ""}</span></label>
+        <input
+          value={userName}
+          type="text"
+          id="userName"
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <label htmlFor="password">Password <span className="span">{isInvalidPassword ? '*Invalid Password' : ""}</span> </label>
+        <input
+          value={password}
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+          type="primary"
+          loading={isLoading ? true : false}
+          onClick={async () => {
+            setIsLoading(true);
+            const data = {
+              userName,
+              password,
+            };
+            try {
+              const response = await axios.post("/api/users/login", data);
+              console.log(response.status);
+              if (response.status === 200) {
+                const { id, adress, tel, userName, name, lastName, rol } =
+                  response.data.data.userData;
+                await sleep(3000);
+                setIsInvalidPassword(false);
+                setIsUserNotFound(false);
+                if(rol != 'admin'){
 
-const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
-};
-
-const loginRequest = (email, password) => {
-  axios
-    .post("http://localhost:3000/api/users/login", { email, password })
-    .then((response) => {
-      console.log("Respuesta exitosa:", response);
-    })
-    .catch((error) => {
-      console.error("Error en la solicitud:", error);
-    });
-};
-
-const Login = () => (
-  <Form
-    name="basic"
-    labelCol={{
-      span: 8,
-    }}
-    wrapperCol={{
-      span: 16,
-    }}
-    style={{
-      maxWidth: 600,
-    }}
-    initialValues={{
-      remember: true,
-    }}
-    onFinish={onFinish}
-    onFinishFailed={onFinishFailed}
-    autoComplete="off"
-  >
-    <Form.Item
-      label="email"
-      name="email"
-      rules={[
-        {
-          required: true,
-          message: "Please input your username!",
-        },
-      ]}
-    >
-      <Input />
-    </Form.Item>
-
-    <Form.Item
-      label="Password"
-      name="password"
-      rules={[
-        {
-          required: true,
-          message: "Please input your password!",
-        },
-      ]}
-    >
-      <Input.Password />
-    </Form.Item>
-
-    <Form.Item
-      name="remember"
-      valuePropName="checked"
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    >
-      <Checkbox>Remember me</Checkbox>
-    </Form.Item>
-
-    <Form.Item
-      wrapperCol={{
-        offset: 8,
-        span: 16,
-      }}
-    >
-      <Button
-        type="primary"
-        htmlType="submit"
-        onClick={() => {
-          loginRequest(Input.Input, Input.Password);
-        }}
-      >
-        Submit
-      </Button>
-    </Form.Item>
-  </Form>
-);
+                  createCookies(id, adress, tel, userName, name, lastName, rol);
+                 toggleLoginShow();
+                } else {
+                  createCookies(id, adress, tel, userName, name, lastName, rol );
+                  setIsAdminLogged(true);
+                  toggleLoginShow()
+                  navigate("/admin");
+                }
+                
+                
+              }
+            } catch (error) {
+              if(error.response.status === 401) {
+                setIsInvalidPassword(true);
+                setIsUserNotFound(false)
+              } else if (error.response.status === 404) {
+                setIsUserNotFound(true);
+                setIsInvalidPassword(false);
+        
+              } else {
+                console.error(error.response.status)
+              }
+            }
+            
+            setIsLoading(false);
+          }}
+        >
+          Login!
+        </Button>
+      </div>
+    </>
+  );
+}
 
 export default Login;
