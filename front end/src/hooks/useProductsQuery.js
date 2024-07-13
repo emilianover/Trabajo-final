@@ -3,7 +3,7 @@ import axios from "axios"
 // import peek from "../utils/peek";
 
 function getProducts() {
-    return axios.get("/api/products").then(({data})=> data);
+    return axios.get('https://fakestoreapi.com/products').then(({data})=> data);
 }
 
 const useProductsQuery = () => {
