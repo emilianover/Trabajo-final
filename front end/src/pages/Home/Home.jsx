@@ -12,13 +12,14 @@ import { useLogStore } from "../../stores/useLogStore";
 import { getUser } from "../../functions/cookieHandler"
 import { useNavigate } from "react-router-dom"
 import { Button, Drawer } from "antd";
+import axios from "axios"; 
 
 //Query products:
 import useProductsQuery from "../../hooks/useProductsQuery"
 
 
 function Home() {
-    // const [products, setProducts] = useState([]);
+    const [Localproducts, setProducts] = useState([]);
     const { products } = useProductsQuery();
   
     const navigate = useNavigate();
@@ -46,22 +47,24 @@ function Home() {
   
     //Datos de cookie
     const userCookies = getUser();
-  
-    // useEffect(() => {
-    //   fetch(peek("/api/products"))
-    //     .then((data) => peek(data.json()))
-    //     // .then(sleep(3000).then((data) => data))
-    //     .then((data) => {
-    //       console.log(data);
-    //       setProducts(data);
-    //     });
-    // }, []);
+
+    useEffect(() => {
+      axios.get("https://fakestoreapi.com/products")
+      .then((response) => {
+        console.log(response.data); 
+        setProducts(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+      });
+  }, []);
   
     useEffect(() => {
       userCookies.id === undefined
         ? toggleIsLoggedIn(false)
         : toggleIsLoggedIn(true);
     }, [userCookies.id]);
+    
   
     return (
       <>

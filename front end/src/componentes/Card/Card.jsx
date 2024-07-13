@@ -1,26 +1,17 @@
-import React from "react";
-import { Image } from "antd";
-import { useCartStore } from "../../app/useCartStore";
+/* eslint-disable react/prop-types */
+import { useCartStore } from "../../stores/useCartStore";
 
-const Card = (props) => {
-  const addProduct = useCartStore((state) => state.addProduct);
+function Card({ title, imageUrl, description, price, product }) {
+  const actions = useCartStore(state => state.actions);
   return (
     <div className="card">
-      <h3>{props.title.slice(0, 40)}...</h3>
-      <Image src={props.image} alt="producto" />
-      <h4>{props.price}</h4>
-
-      <p>{props.description.slice(0, 40)}...</p>
-
-      <button
-        onClick={() => {
-          addProduct(props.product);
-        }}
-      >
-        Aceptar
-      </button>
+      <h3>{title.slice(0, 20)}...</h3>
+      <img src={imageUrl} alt="" />
+      <h6>{description.slice(0, 40)}...</h6>
+      <h4>{price}</h4>
+      <button onClick={() => actions.addProduct(product)}>Comprar!</button>
     </div>
   );
-};
+}
 
 export { Card };

@@ -10,6 +10,7 @@ import peek from "./utils/peek"
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import Admin from "./pages/Admin/Admin";
 
 
 
@@ -21,7 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={ <Home />} />
-          <Route path="/admin" element = { <IsNotAdmin /> } />
+          <Route path="/admin" element = { <Admin /> } />
           <Route path='/register' element= {<Register />} />
           <Route path='/confirm' element= {<Confirm />} />
           <Route path='/success' element= {<Success />} />

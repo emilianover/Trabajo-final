@@ -69,7 +69,7 @@ function Admin() {
     <div className="header_logo">
       <img src="https://placekitten.com/184/84"></img>
 
-      <h1> My E-commerce</h1>
+      <h1> Space Store</h1>
     </div>
     <div className="header_links">
       
