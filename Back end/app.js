@@ -1,55 +1,83 @@
-const createError = require("http-errors");
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const Products = require("./models/products");
-const indexRouter = require("./routes/index")
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+
+const cors = require('cors');
+const createDb = require('./utils/createDb');
+const checkIfDatabaseIsEmpty = require('./utils/checkIfDataBaseIsEmpty');
+
+const { syncDatabase } = require('./db/database');
+const createDatabaseIfNotExists = require('./db/createDataBaseIfNotExist');
 
 
-const usersRouter = require("./routes/userRoutes");
-const { sequelize } = require("./db/database");
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const productsRouter = require('./routes/products');
+const ordersRouter = require('./routes/orders');
+const { create } = require('./models/products');
 
-var app = express();
+const app = express();
+app.use(cors());
+
+
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
-app.use(logger("dev"));
+app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/api", indexRouter);
+app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use("/users", usersRouter);
+app.use('/', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/products', productsRouter);
+app.use('/api/orders', ordersRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.render('error');
 });
 
-app.listen(8080, ()=>{
-  console.log("listenin on port 8080")
-})
+// Creacion de base de datos EN CASO DE QUE NO EXISTA
+async function startDb () {
+  try {
+    await createDatabaseIfNotExists(); // Crea la base de datos en caso de que no exista
+    await syncDatabase();
+    
+    const isDatabaseEmpty = await checkIfDatabaseIsEmpty();
+    if(isDatabaseEmpty) {
+      console.log('Base de datos sincronizada')
+      await createDb();
+      console.log('Data pusheada  la base de datos')
+    } else {
+      console.log('Datos existentes en la base de datos, no hizo falta crear datos nuevos');
+    }
+  } catch (error) {
+    console.error('Error al sincronizar/crear base de datos')
+  }
+}
 
-sequelize
-  .sync({ force: false })
-  .then(() => console.log("coneccion BD exitosa"))
-  .catch((error) => console.log("hubo un error con la conexion BD", error));
+startDb();
+
+
+
 
 module.exports = app;
