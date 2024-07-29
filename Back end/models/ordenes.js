@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
-const { sequelize } = require("../db/database");
+const { sequelize } = require("../db/createDataBaseIfNotExist");
 class Ordenes extends Model {}
-Orders.init(
+Ordenes.init(
   {
     userId: DataTypes.INTEGER,
     id:{type:DataTypes.INTEGER,primaryKey:true, autoIncrement:true},

@@ -1,7 +1,7 @@
 //DANGER
 const Products = require("../models/products");
-const Users = require("../models/users");
-const Orders = require("../models/orders");
+const Users = require("../models/User");
+const Orders = require("../models/ordenes");
 const readDb = require("./readDb");
 
 async function createDb() {

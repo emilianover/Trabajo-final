@@ -7,11 +7,12 @@ const sequelize = new Sequelize("ecommercefinal", "root", "1q2w3e4r", {
 async function createDatabaseIfNotExists() {
     try {
       // Intenta crear la base de datos si no existe
-      await sequelize.query("CREATE DATABASE IF NOT EXISTS Trabajo-Final");
+      console.log("hola")
+      await sequelize.sync();
       console.log('Base de datos creada correctamente');
     } catch (error) {
       console.error('Error al crear base de datos', error);
     }
   }
 
-  module.exports = createDatabaseIfNotExists;
+  module.exports = {createDatabaseIfNotExists, sequelize } ;

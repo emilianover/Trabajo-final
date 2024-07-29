@@ -6,9 +6,10 @@ const {readAllProducts, } = require('../middlewares/productsMiddleware');
 const { getProductsController, updateProduct, createNewProduct} = require('../controllers/productsControllers');
 
 
-router.get('/', function(req, res , next) {
+router.get('/', function(req, res , next) { console.log("hola1234")
     axios.get('https://fakestoreapi.com/products')
         .then(response => {
+            console.log(response)
             res.header("Access-Control-Allow-Origin", "*");
             res.json(response.data);
 
@@ -26,6 +27,8 @@ router.get('/', readAllProducts, getProductsController );
 router.put('/', updateProduct)
 
 router.post('/', createNewProduct)
+
+// router.delete()
 
 
 module.exports = router;
