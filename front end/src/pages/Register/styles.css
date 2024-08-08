@@ -33,7 +33,7 @@ p {
   padding: 20px;
   border-radius: 6px;
   background: #fff;
-  box-shadow: 0 0 8px #006622;
+  box-shadow: 0 0 8px #f4a261; /* Sombra naranja pastel */
   margin: 0;
   outline: none;
   font-family: Roboto, Arial, sans-serif;
@@ -46,7 +46,7 @@ p {
   position: relative;
   height: 300px;
   width: 100%;
-  background-image: url("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg");
+  background-image: url("https://i.pinimg.com/originals/db/8b/d4/db8bd4c068ae9ea4a23ee311ff112de4.jpg");
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -77,8 +77,8 @@ select {
 .item input:hover,
 .item textarea:hover {
   border: 1px solid transparent;
-  box-shadow: 0 0 3px 0 #006622;
-  color: #006622;
+  box-shadow: 0 0 3px 0 #f4a261; /* Sombra naranja pastel */
+  color: #e76f51; /* Color de texto naranja pastel */
 }
 
 .item {
@@ -91,26 +91,27 @@ select {
 }
 
 .item_span_green {
-    color: green;
-    margin-left: 1rem;
+  color: green;
+  margin-left: 1rem;
 }
+
 .button {
   line-height: 100%;
   text-align: center;
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
-  text-align: center;
   width: 150px;
   height: 40px;
   border: none;
   border-radius: 5px;
-  background: #006622;
+  background: #f4a261; /* Botón naranja pastel */
   font-size: 16px;
   color: #fff;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .button:hover {
-  background: #00b33c;
+  background: #e76f51; /* Color naranja más oscuro al hacer hover */
 }
