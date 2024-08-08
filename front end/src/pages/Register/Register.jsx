@@ -14,7 +14,7 @@ function Register() {
 
   const [lastName, setLastName] = useState("");
 
-  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
 
   const [adress, setAdress] = useState("");
 
@@ -26,10 +26,10 @@ function Register() {
  
   const [isErrorSpan, setIsErrorSpan] = useState(false);
 
-  const openAddNotification = (userName) =>
+  const openAddNotification = (email) =>
   notification.open({
     message: "Registration Successful",
-    description: userName,
+    description: email,
     placement: "bottomLeft",
     icon: <CheckOutlined style={{color: "green"}} />,
   });
@@ -40,7 +40,7 @@ function Register() {
     const data = {
       name,
       lastName,
-      userName,
+      email,
       adress,
       tel,
       password,
@@ -51,7 +51,7 @@ function Register() {
       console.log(response.status);
       if(response.status === 201) {
         await sleep(3000);
-        openAddNotification(userName)
+        openAddNotification(email)
       } else if (response.status === 400) {
         setIsErrorSpan(true)
       }
@@ -102,16 +102,16 @@ function Register() {
               />
             </div>
             <div className="item">
-              <label htmlFor="userName">
-                User Name <span className="item_span">*</span>
+              <label htmlFor="email">
+                Email<span className="item_span">*</span>
               </label>
               <input
-                value={userName}
+                value={email}
                 className="input"
-                id="userName"
+                id="email"
                 type="text"
-                name="userName"
-                onChange={(e) => setUserName(e.target.value)}
+                name="email"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div className="item">

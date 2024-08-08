@@ -1,14 +1,17 @@
 const Users = require("../models/User");
+const jwt = require("jsonwebtoken")
+const secretKey = process.env.SECRET_KEY
+console.log(secretKey)
 module.exports = {
    register: async (req, res) => {
-    const { userName, name, lastName, password, tel, adress } = req.body;
+    const { email, name, lastName, password, tel, adress } = req.body;
     const rol = "user";
     
 
     try {
-      console.log(userName, name, lastName, password, tel, adress)
+      console.log(email, name, lastName, password, tel, adress)
       const userRegistered = await Users.create({
-        userName,
+        email,
         name,
         lastName,
         password,
@@ -30,9 +33,9 @@ module.exports = {
     }
   },
 login: async (req, res) => {
-    try {
-        const { userName, password } = req.body;
-        const userFound = await Users.findOne({ where: { userName: userName } });
+    try {console.log(secretKey)
+        const { email, password } = req.body;
+        const userFound = await Users.findOne({ where: { email: email } });
   
         if (!userFound) {
           return res
@@ -43,14 +46,17 @@ login: async (req, res) => {
       
   
         if (userFound.password === password) {
+          const token = jwt.sign({ email}, secretKey, { expiresIn: "1h" })
           return userFound.rol === "admin"
+          
             ? res.json({
                 data: {
+                  token,
                   status: 200,
                   message: "Admin logeado",
                   userData: {
                     id: userFound.id,
-                    userName: userFound.userName,
+                    email: userFound.email,
                     name: userFound.name,
                     lastName: userFound.lastName,
                     password: userFound.password,
@@ -62,12 +68,13 @@ login: async (req, res) => {
               })
             : res.json({
                 data: {
+                  token,
                   status: 200,
                   message: "Usuario logeado",
                   rol: userFound.rol,
                   userData: {
                     id: userFound.id,
-                    userName: userFound.userName,
+                    email: userFound.email,
                     name: userFound.name,
                     lastName: userFound.lastName,
                     password: userFound.password,

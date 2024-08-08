@@ -10,7 +10,7 @@ import {createCookies} from "../../functions/cookieHandler";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [userName, setUserName] = useState("");
+  const [email, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isInvalidPassword, setIsInvalidPassword] = useState(false);
@@ -24,11 +24,11 @@ function Login() {
         <button className="close_button" onClick={() => toggleLoginShow() }>
           <CloseOutlined />{" "}
         </button>
-        <label htmlFor="userName">Username <span className="span">{isUserNotFound? '*User not Found' : ""}</span></label>
+        <label htmlFor="email">Email <span className="span">{isUserNotFound? '*User not Found' : ""}</span></label>
         <input
-          value={userName}
+          value={email}
           type="text"
-          id="userName"
+          id="email"
           onChange={(e) => setUserName(e.target.value)}
         />
         <label htmlFor="password">Password <span className="span">{isInvalidPassword ? '*Invalid Password' : ""}</span> </label>
@@ -43,24 +43,24 @@ function Login() {
           onClick={async () => {
             setIsLoading(true);
             const data = {
-              userName,
+              email,
               password,
             };
             try {
               const response = await axios.post("/api/users/login", data);
               console.log(response.status);
               if (response.status === 200) {
-                const { id, adress, tel, userName, name, lastName, rol } =
+                const { id, adress, tel, email, name, lastName, rol } =
                   response.data.data.userData;
                 await sleep(3000);
                 setIsInvalidPassword(false);
                 setIsUserNotFound(false);
                 if(rol != 'admin'){
 
-                  createCookies(id, adress, tel, userName, name, lastName, rol);
+                  createCookies(id, adress, tel, email, name, lastName, rol);
                  toggleLoginShow();
                 } else {
-                  createCookies(id, adress, tel, userName, name, lastName, rol );
+                  createCookies(id, adress, tel, email, name, lastName, rol );
                   setIsAdminLogged(true);
                   toggleLoginShow()
                   navigate("/admin");

@@ -54,6 +54,15 @@ module.exports = {
     getProductsController: async (req, res) => {
       return res.status(req.statusCode).json(req.dataToSend)
     },
-  
     
+    deleteProducts:( async (req, res) => {
+      try{
+          const { houseId } = req.params
+          const house = await house.findByPk(houseId)
+          house.destroy()
+          return res.status(200).send("House destroyed")
+      }catch (error){
+          return res.status(500).send("Something happens")
+      }
+  }),
   };

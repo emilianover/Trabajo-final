@@ -22,7 +22,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={ <Home />} />
-          <Route path="/admin" element = { <Admin /> } />
+          <Route path="/admin" element = { <IsNotAdmin /> } />
           <Route path='/register' element= {<Register />} />
           <Route path='/confirm' element= {<Confirm />} />
           <Route path='/success' element= {<Success />} />

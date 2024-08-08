@@ -3,10 +3,13 @@ var router = express.Router();
 const axios = require('axios');
 const peek = require('../utils/peek');
 const {readAllProducts, } = require('../middlewares/productsMiddleware');
-const { getProductsController, updateProduct, createNewProduct} = require('../controllers/productsControllers');
+const { getProductsController, updateProduct, createNewProduct, deleteProducts } = require('../controllers/productsControllers');
+const { token } = require('morgan');
 
 
-router.get('/', function(req, res , next) { console.log("hola1234")
+// const {  deleteProducts, } = require('../controllers/deleteProducts')
+
+router.get('/',  function(req, res , next) { 
     axios.get('https://fakestoreapi.com/products')
         .then(response => {
             console.log(response)
@@ -28,7 +31,7 @@ router.put('/', updateProduct)
 
 router.post('/', createNewProduct)
 
-// router.delete()
+router.delete('/',  deleteProducts)
 
 
 module.exports = router;

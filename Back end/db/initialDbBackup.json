@@ -280,7 +280,7 @@
       {
         "name": "Admin",
         "lastName": "Admin",
-        "userName": "admin@email.com",
+        "email": "admin@email.com",
         "password": "12345",
         "adress": "Admin adress",
         "tel": "03826502694",
@@ -289,7 +289,7 @@
       {
         "name": "Emiliano",
         "lastName": "Vera",
-        "userName": "Emiliano@email.com",
+        "email": "Emiliano@email.com",
         "password": "123",
         "adress": "boca",
         "tel": "12345",
@@ -298,7 +298,7 @@
       {
         "name": "Lautaro",
         "lastName": "Vera",
-        "userName": "LauVera.exe@email.com",
+        "email": "LauVera.exe@email.com",
         "password": "12345",
         "adress": "boca",
         "tel": "023124",

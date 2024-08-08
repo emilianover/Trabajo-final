@@ -3,6 +3,7 @@ const { sequelize } = require("../db/createDataBaseIfNotExist");
 class Users extends Model {}
 Users.init(
   {
+    
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     rol: DataTypes.STRING,
