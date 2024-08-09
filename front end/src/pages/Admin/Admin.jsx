@@ -14,53 +14,63 @@ import { getUser } from "../../functions/cookieHandler";
 import { useAdminStore } from "../../stores/useAdminStore";
 
 
-
 function Admin() {
   const [products, setProducts] = useState([]);
-
-
-  //Filters
-
+  const [loading, setLoading] = useState(true);
   const [filterByName, setFilterByName] = useState("");
   const [filterByMinPrice, setFilterByMinPrice] = useState(0);
   const [filterByMaxPrice, setFilterByMaxPrice] = useState(Infinity);
   const [isSortByMinPrice, setIsSortByMinPrice] = useState(false);
   const [isSortByMaxPrice, setIsSortByMaxPrice] = useState(false);
-
-  const categories = products.map((product) => product.category);
-  const uniqueCategories = [...new Set(categories)];
   const [filterByCategory, setFilterByCategory] = useState("-");
 
-  
-
   const isEditDrawerShow = useAdminStore((state) => state.isEditDrawerShow);
+  const { setIsEditDrawerShow } = useAdminStore();
+  const [isAddProductDrawerShow, setIsAddProductDrawerShow] = useState(false);
 
-  const {setIsEditDrawerShow} = useAdminStore();
-  const [ isAddProductDrawerShow, setIsAddProductDrawerShow] = useState(false)
-
- 
-
-  //Datos de cookie
   const userCookies = getUser();
 
   useEffect(() => {
-    fetch(peek("/api/products"))
-      .then((data) => peek(data.json()))
-      .then((data) => {
-        console.log(data);
-        setProducts(data);
-      });
-  }, []);
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('/api/products', {
+          headers: {
+            'Authorization': `Bearer ${userCookies.token}` // Ajusta el encabezado según tu API
+          }
+        });
 
-   // Función para actualizar la lista de productos
-   const updateProductsAfterEdit = (updatedProduct) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-    const updatedProductList = products.map((product) =>
-      product.id === updatedProduct.id ? updatedProduct : product
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          console.error('Expected an array of products.');
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, [userCookies.token]);
+
+  const updateProductsAfterEdit = (updatedProduct) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === updatedProduct.id ? updatedProduct : product
+      )
     );
-
-    setProducts(updatedProductList); 
   };
+
+  if (loading) return <div>Loading...</div>;
+
+  const categories = products.map((product) => product.category);
+  const uniqueCategories = [...new Set(categories)];
 
 
   return (

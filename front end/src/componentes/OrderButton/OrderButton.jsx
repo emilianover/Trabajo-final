@@ -35,7 +35,11 @@ function OrderButton() {
           products,
         };
         try {
-          const response = await axios.post("api/orders", data);
+          const response = await axios.post("http://localHost:5173api/orders", {
+            // Datos que deseas enviar
+            orderData: 'example',
+          });
+          
           if(response.status === 200) {
             await sleep(3000)
             setIsLoading(false)

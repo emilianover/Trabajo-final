@@ -3,6 +3,7 @@ import { useLoginStore } from "../../stores/useLoginStore";
 import { useLogStore } from "../../stores/useLogStore";
 
 import Logout from "../Logout/Logout"
+import  "./Header.css"
 
 
 
@@ -15,7 +16,7 @@ function Header() {
       <div className="header_logo">
         <img src="https://placekitten.com/184/84"></img>
 
-        <h1> The Point</h1>
+        <h1> Aridas</h1>
       </div>
       <div className="header_links">
         <Link className="header_links_link" to={"/"}>
