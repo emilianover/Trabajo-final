@@ -91,39 +91,40 @@ body {
   align-items: center;
 }
 
-/* Estilos del Login */
+* Estilos del Login */
 .login {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   padding: 30px;
   background-color: var(--color-secundario);
   border: 1px solid var(--border-color);
-  border-radius: 50%;
-  max-width: 300px;
-  height: 300px;
+  border-radius: 8px; /* Cambiado a borde redondeado más sutil */
+  max-width: 400px; /* Ampliado para más comodidad */
   margin: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
+/* Ajustes en el input y el botón para que se vean mejor dentro del nuevo diseño */
 .login input {
-  height: 30px;
-  padding: 5px;
-  border-radius: 20px;
+  height: 40px; /* Aumento de altura para mejor usabilidad */
+  padding: 10px;
+  border-radius: 8px; /* Coincide con el borde del contenedor */
   border: 1px solid var(--border-color);
   text-align: center;
-  width: 80%;
+  width: 100%; /* Aumento del ancho para que se ajuste al contenedor */
+  margin-bottom: 1rem; /* Espaciado entre campos */
 }
 
 .login button {
   background-color: var(--color-primario);
-  width: 100px;
-  height: 35px;
+  width: 100%; /* Aumento del ancho del botón para que se ajuste al contenedor */
+  height: 40px; /* Aumento de altura para mejor usabilidad */
   color: white;
   border: none;
-  border-radius: 20px;
+  border-radius: 8px; /* Coincide con el borde del contenedor */
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s ease;
@@ -132,9 +133,7 @@ body {
 .login button:hover {
   background-color: var(--color-terciario);
   color: var(--color-primario);
-}
-
-/* Estilos de bienvenida */
+}/* Estilos de bienvenida */
 .welcome {
   background-color: var(--color-terciario);
   color: var(--color-primario);
