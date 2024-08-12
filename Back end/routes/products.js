@@ -8,7 +8,6 @@ const { token } = require('morgan');
 const { verifyToken, adminVerify} = require("../middlewares/verify-token")
 
 
-// const {  deleteProducts, } = require('../controllers/deleteProducts')
 
 router.get('/',  function(req, res , next) { 
     axios.get('https://fakestoreapi.com/products')

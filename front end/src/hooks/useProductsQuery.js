@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 // import peek from "../utils/peek";
-
 function getProducts() {
     return axios.get('https://fakestoreapi.com/products').then(({data})=> data);
 }
@@ -15,5 +14,4 @@ const useProductsQuery = () => {
 
     return { products, isLoading }
 }
-
 export default useProductsQuery

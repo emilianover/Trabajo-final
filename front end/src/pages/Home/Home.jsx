@@ -49,7 +49,7 @@ function Home() {
     const userCookies = getUser();
 
     useEffect(() => {
-      axios.get("https://fakestoreapi.com/products")
+      axios.get("/api/products")
       .then((response) => {
         console.log(response.data); 
         setProducts(response.data);

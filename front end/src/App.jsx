@@ -14,32 +14,23 @@ import Admin from "./pages/Admin/Admin";
 import PrivateRoute from "./componentes/Layout/PrivateRoute"
 
 
-
 const queryClient = new QueryClient()
 function App() {
   return (
+    <>
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route 
-            path="/admin" 
-            element={
-              <PrivateRoute requiredRole="admin">
-                <Admin />
-              </PrivateRoute>
-            } 
-          />
-          <Route path="/isnotadmin" element={<IsNotAdmin />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/confirm" element={<Confirm />} />
-          <Route path="/success" element={<Success />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/" element={ <Home />} />
+          <Route path="/admin" element = { <IsNotAdmin /> } />
+          <Route path='/register' element= {<Register />} />
+          <Route path='/confirm' element= {<Confirm />} />
+          <Route path='/success' element= {<Success />} />
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 

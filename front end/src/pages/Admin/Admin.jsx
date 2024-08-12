@@ -33,7 +33,7 @@ function Admin() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('/api/products', {
+        const response = await fetch('http://localHost:3000/api/products', {
           headers: {
             'Authorization': `Bearer ${userCookies.token}` // Ajusta el encabezado según tu API
           }
