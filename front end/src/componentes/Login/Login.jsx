@@ -47,7 +47,8 @@ function Login() {
               password,
             };
             try {
-              const response = await axios.post("/api/users/login", data);
+              const userData = localStorage.getItem("user")
+              const response = await axios.post("http://localhost:3000/api/users/login", data);
               console.log('Response:', response); // Verifica la respuesta completa
               if (response.status === 200) {
                 const { id, adress, tel, email, name, lastName, rol } = response.data.data.userData;

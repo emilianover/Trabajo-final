@@ -35,9 +35,9 @@ function OrderButton() {
           products,
         };
         try {
-          const userData = localStorage.getItem("user")
+         
           const user = JSON.parse(userData)
-          const response = await axios.post("http://localHost:3000/api/orders", data ,{
+          const response = await axios.post("http://localhost:3000/api/orders", data ,{
             // Datos que deseas enviar
            headers:{
             "Authorization":"bearer " + user.token
