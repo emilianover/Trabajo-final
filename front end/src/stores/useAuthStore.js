@@ -9,7 +9,7 @@ const useAuthStore = create((set) => ({
     login: async (email, password) => {
       try {
         set({ loading: true }); // Inicia el estado de carga
-        const response = await axios.post("/api/users/login", {
+        const response = await axios.post("https://localhost:3000/api/users/login", {
           email,
           password,
         });
@@ -28,7 +28,7 @@ const useAuthStore = create((set) => ({
     register: async (email, password, nombre, direccion, telefono) => {
       try {
         set({ loading: true }); // Inicia el estado de carga
-        const response = await axios.post("/api/users/register", {
+        const response = await axios.post("https://localhost:3000/api/users/register", {
           email,
           password,
           nombre,
@@ -57,7 +57,7 @@ const useAuthStore = create((set) => ({
       if (token) {
         try {
           set({ loading: true }); // Inicia el estado de carga
-          const response = await axios.get("/api/users/me", {
+          const response = await axios.get("https://localhost:3000/api/users/me", {
             headers: { Authorization: `Bearer ${token}` },
           });
           set({ user: response.data });

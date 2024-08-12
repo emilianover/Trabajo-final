@@ -10,11 +10,22 @@ function verifyToken(req, res, next) {
     }
     try {
       const payload = jwt.verify(token, secretKey);
-      req.username = payload.username;
+      
+      req.user = payload;
+      
       next();
     } catch (error) {
       return res.status(403).json({ message: "Token not valid" });
     }
   }
 
-  module.exports = verifyToken
+  function adminVerify(req, res, next){
+    const user = req.user
+    if(user.rol === "admin"){
+     next()
+    }else{
+        res.status(403).send("no autorizado")
+    }
+}
+
+  module.exports = {verifyToken, adminVerify}

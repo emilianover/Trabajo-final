@@ -46,7 +46,7 @@ login: async (req, res) => {
       
   
         if (userFound.password === password) {
-          const token = jwt.sign({ email}, secretKey, { expiresIn: "1h" })
+          const token = jwt.sign({ email, id:userFound.id, rol:userFound.rol}, secretKey, { expiresIn: "1h" })
           return userFound.rol === "admin"
           
             ? res.json({
@@ -59,7 +59,7 @@ login: async (req, res) => {
                     email: userFound.email,
                     name: userFound.name,
                     lastName: userFound.lastName,
-                    password: userFound.password,
+                    // password: userFound.password,
                     adress: userFound.adress,
                     tel: userFound.tel,
                     rol: userFound.rol,

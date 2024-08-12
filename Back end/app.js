@@ -16,9 +16,10 @@ const {createDatabaseIfNotExists} = require('./db/createDataBaseIfNotExist');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const productsRouter = require('./routes/products');
+const orderRouter = require('./routes/orderRouter')
 
 const { create } = require('./models/products');
-const verifyToken = require('./middlewares/verify-token');
+const { verifyToken }= require('./middlewares/verify-token');
 
 const app = express();
 app.use(cors());
@@ -40,6 +41,7 @@ app.use(cookieParser());
 
 // app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/orders', orderRouter)
 
 app.use('/api/products', verifyToken, productsRouter);
 
@@ -52,6 +54,12 @@ app.get( "/welcome", function(req, res){
   return res.json({message:"hola"})
 });
 
+app.use((err, req, res, next) => {
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.status(err.status || 500);
+  res.json({ error: res.locals.error });
+});
 // // error handler
 // app.use(function(err, req, res, next) {
 //   // set locals, only providing error in development
@@ -86,7 +94,9 @@ async function startDb () {
 startDb();
 
 
-app.listen("3000");
+app.listen(3000, () => {
+  console.log('Servidor corriendo en http://localhost:3000');
+});
 
 
 

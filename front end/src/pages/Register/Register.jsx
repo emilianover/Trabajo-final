@@ -47,7 +47,7 @@ function Register() {
     };
     
     try {
-      const response = await axios.post("api/users/register", data);
+      const response = await axios.post("http://localhost:3000/api/users/register", data);
       console.log(response.status);
       if(response.status === 201) {
         await sleep(3000);
@@ -56,10 +56,8 @@ function Register() {
         setIsErrorSpan(true)
       }
     } catch (error) {
-      console.error(error.response.status);
-      
-
-    }
+      console.error('Error al registrar:', error.response ? error.response.data : error.message);
+  }
     setIsErrorSpan(false)
     
     setIsLoading(false)

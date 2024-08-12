@@ -4,7 +4,10 @@ class Users extends Model {}
 Users.init(
   {
     
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique:true
+     },
     password: DataTypes.STRING,
     rol: DataTypes.STRING,
     celular: DataTypes.STRING,

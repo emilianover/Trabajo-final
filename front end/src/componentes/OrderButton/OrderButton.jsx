@@ -35,9 +35,13 @@ function OrderButton() {
           products,
         };
         try {
-          const response = await axios.post("http://localHost:5173api/orders", {
+          const userData = localStorage.getItem("user")
+          const user = JSON.parse(userData)
+          const response = await axios.post("http://localHost:3000/api/orders", data ,{
             // Datos que deseas enviar
-            orderData: 'example',
+           headers:{
+            "Authorization":"bearer " + user.token
+           }
           });
           
           if(response.status === 200) {
@@ -49,7 +53,8 @@ function OrderButton() {
       
           return response.status;
         } catch (error) {
-          console.error(error.response.status);
+          console.error(error);
+
         }
       
         

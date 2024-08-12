@@ -5,6 +5,7 @@ const peek = require('../utils/peek');
 const {readAllProducts, } = require('../middlewares/productsMiddleware');
 const { getProductsController, updateProduct, createNewProduct, deleteProducts } = require('../controllers/productsControllers');
 const { token } = require('morgan');
+const { verifyToken, adminVerify} = require("../middlewares/verify-token")
 
 
 // const {  deleteProducts, } = require('../controllers/deleteProducts')
@@ -27,11 +28,11 @@ router.get('/',  function(req, res , next) {
 
 router.get('/', readAllProducts, getProductsController );
 
-router.put('/', updateProduct)
+router.put('/', updateProduct, verifyToken, adminVerify )
 
-router.post('/', createNewProduct)
+router.post('/', createNewProduct, verifyToken, adminVerify)
 
-router.delete('/',  deleteProducts)
+router.delete('/',  deleteProducts, verifyToken, adminVerify)
 
 
 module.exports = router;

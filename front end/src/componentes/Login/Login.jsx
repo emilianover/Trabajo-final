@@ -51,6 +51,18 @@ function Login() {
               console.log('Response:', response); // Verifica la respuesta completa
               if (response.status === 200) {
                 const { id, adress, tel, email, name, lastName, rol } = response.data.data.userData;
+                const token = response.data.data.token;
+                localStorage.setItem("user", JSON.stringify({
+                  id,
+                  adress,
+                  tel,
+                  email,
+                  name,
+                  lastName,
+                  rol,
+                  token
+                }))
+                
                 await sleep(3000);
                 setIsInvalidPassword(false);
                 setIsUserNotFound(false);
