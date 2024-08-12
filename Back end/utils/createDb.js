@@ -3,6 +3,7 @@ const Products = require("../models/products");
 const Users = require("../models/User");
 const Orders = require("../models/ordenes");
 const readDb = require("./readDb");
+const bcrypt = require('bcrypt');
 
 async function createDb() {
   const { products, users, orders } = await readDb();
@@ -33,11 +34,12 @@ async function createDb() {
 
     const createUserPromises = users.map(async (user) => {
       const { name, lastName, userName, password, adress, tel, rol } = user;
+      const hashedPassword = await bcrypt.hash(password, 10);
       const newUser = await Users.create({
         name,
         lastName,
         userName,
-        password,
+        hashedPassword,
         adress,
         tel,
         rol,

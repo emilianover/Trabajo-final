@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use('/api/users', usersRouter);
 app.use('/api/orders', orderRouter)
 
-app.use('/api/products', verifyToken, productsRouter);
+app.use('/api/products', productsRouter);
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {

@@ -9,6 +9,7 @@ import sleep from '../../utils/sleep'
 
 
 
+
  
 
 function OrderButton() {
@@ -27,6 +28,7 @@ function OrderButton() {
       onClick={async () => {
         setIsLoading(true)
           const userId = getUser().id;
+          
       
         const products = globalProducts.map((product) => product.title).join(", ");
       
@@ -35,8 +37,10 @@ function OrderButton() {
           products,
         };
         try {
+          const userData = localStorage.getItem("user")
          
           const user = JSON.parse(userData)
+          console.log(user)
           const response = await axios.post("http://localhost:3000/api/orders", data ,{
             // Datos que deseas enviar
            headers:{
